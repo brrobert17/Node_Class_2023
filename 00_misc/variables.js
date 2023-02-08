@@ -7,3 +7,9 @@ hobbies2.push("dancing")
 me.hobbies = hobbies2
 
 console.log(me)
+
+function out(any) {
+    console.log(any)
+}
+
+out("dd")
