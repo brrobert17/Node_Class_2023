@@ -10,3 +10,4 @@ life cycles                     scripts
 
 
 package-lock.json: shows installed versions
+callback function is a function passed as a function parameter
