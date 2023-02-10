@@ -11,3 +11,5 @@ life cycles                     scripts
 
 package-lock.json: shows installed versions
 callback function is a function passed as a function parameter
+8000 https port
+8080 http dev port

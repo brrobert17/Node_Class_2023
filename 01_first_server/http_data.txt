@@ -1,0 +1,6 @@
+anatomy of a URL:
+
+protocol
+ |      domain      endpoint      path variable
+https://localhost/kickadinosaur/:id?size=1200
+                                    query string -> optional
