@@ -27,9 +27,9 @@ const handleNewId = () => {
   ids.push(newId);
   console.log(newId);
   return newId;
-}
+};
 
-const getIndex = (i) => birds.findIndex(bird => bird.id === +i);
+const getIndex = (i) => birds.findIndex((bird) => bird.id === +i);
 
 const express = require("express");
 const app = express();
@@ -40,7 +40,7 @@ app.get("/birds", (req, res) => {
 });
 
 app.get("/birds/:id", (req, res) => {
-  const birdById = birds.filter(bird => bird.id === +req.params.id);
+  const birdById = birds.filter((bird) => bird.id === +req.params.id);
   res.send(birdById);
 });
 
@@ -51,15 +51,31 @@ app.post("/birds", (req, res) => {
 });
 
 app.delete("/birds/:id", (req, res) => {
-  const id = + req.params.id;
-  birds.splice(getIndex(id), 1);
-  res.send({message: `bird ${id} deleted`})
+  const id = +req.params.id;
+  if (getIndex(id) === -1) {
+    res
+      .status(404)
+      .send({ data: getIndex(id), message: `bird ${id} not found` });
+  } else {
+    const deletedBird = birds.splice(getIndex(id), 1)[0];
+    res.send({ data: deletedBird });
+  }
 });
 
-app.put("/birds/:id", (req, res) => {
-  const id = + req.params.id;
-  birds.splice(getIndex(id), 1, {id: id, name: req.body.name})
-  res.send(birds.filter(bird => bird.id === +req.params.id))
-})
+// currentId++ postfix
+// ++currentId prefix
+
+app.patch("/birds/:id", (req, res) => {
+  const id = +req.params.id;
+  const foundIndex = getIndex(id);
+  if (foundIndex === -1) {
+    res.status(404).send({ data: foundIndex, message: `bird ${id} not found` });
+  } else {
+    const foundBird = birds[foundIndex];
+    const updatedBird = { ...foundIndex, ...req.body, id: foundBird.id };
+    birds[foundIndex] = updatedBird;
+    res.send({ data: updatedBird });
+  }
+});
 
 app.listen(8080);
