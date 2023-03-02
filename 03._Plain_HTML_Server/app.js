@@ -26,6 +26,10 @@ app.get("/visitors", (req, res) => {
   res.sendFile(__dirname + "/public/visitors/visitors.html");
 });
 
+app.get("/time", (req, res) => {
+  res.sendFile(__dirname + "/public/time/time.html");
+});
+
 app.get("/api/visitors", (req, res) => {
   res.send({ data: visitorCount });
 });

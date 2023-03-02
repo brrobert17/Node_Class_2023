@@ -3,15 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tanks | Visitors</title>
+    <title>Time</title>
   </head>
   <body>
-    <div id="visitor-count"></div>
     <div id="time-right-now"></div>
     <div id="time-spent"></div>
-
-    <button onclick="writeInVisitorsLog()">Write in the visitors' log</button>
-    <script src="../visitors.js"></script>
     <script>
       const initialTime = new Date().getTime();
       setInterval(function timeRightNow() {
