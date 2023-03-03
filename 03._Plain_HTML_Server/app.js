@@ -4,11 +4,11 @@ const app = express();
 app.use(express.static("public"));
 
 let visitorCount = 0;
-const tanks = [
-  { name: "Leopard", nationality: "German" },
-  { name: "Tiger", nationality: "German", year: 1943 },
-  { name: "M1 Abrams", version: "M1" },
-];
+
+//const tanksUtil = require("./util/tanks.js");
+const {getTanks, addTank} = require("./util/tanks.js");
+//console.log(tanksUtil);
+console.log(getTanks());
 
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/public/frontpage/frontpage.html");
@@ -28,6 +28,10 @@ app.get("/visitors", (req, res) => {
 
 app.get("/time", (req, res) => {
   res.sendFile(__dirname + "/public/time/time.html");
+});
+
+app.get("/museumGuards", (req, res) => {
+  res.sendFile(__dirname + "/public/museumGuards/museumGuards.html");
 });
 
 app.get("/api/visitors", (req, res) => {
